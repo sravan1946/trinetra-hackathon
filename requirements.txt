@@ -1,1 +1,3 @@
 flask
+mangadex-downloader
+mangadex
