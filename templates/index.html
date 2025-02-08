@@ -13,7 +13,7 @@
 <!--navbar  -->
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <a href="{{url_for('index')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
               <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
               <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MIdex</span>
           </a>
@@ -101,31 +101,47 @@
 
             <!-- Image Cards -->
             <div class="relative flex-shrink-0 w-48 h-72"> 
+                <a href="{{url_for('download', manga_id='906ee21a-f3a1-483d-9cb1-96080433694d')}}">
                 <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f1.jpg')}}" alt="image 2">
                 <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">The Sound of Your Voice</div>
+                </a>
             </div>
             <div class="relative flex-shrink-0 w-48 h-72"> 
-                <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f3.jpg')}}" alt="image 2">
-                <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Fate Makes No Mistakes</div>
+                <a href="{{url_for('download', manga_id='0200e701-84a3-4384-8012-b07d08239cd6')}}">
+                    <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f3.jpg')}}" alt="image 2">
+                    <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Fate Makes No Mistakes</div>
+                </a>
             </div>
             <div class="relative flex-shrink-0 w-48 h-72"> 
-                <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f4.jpg')}}" alt="image 2">
-                <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Nobelesse</div>
+                <a href="{{url_for('download', manga_id='f61952ad-63bb-4e81-a03e-9e50b9e23037')}}">
+                    <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f4.jpg')}}" alt="image 2">
+                    <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Nobelesse</div>
+                </a>
             </div>
             <div class="relative flex-shrink-0 w-48 h-72"> 
-                <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f5.png')}}" alt="image 2">
-                <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Salad Days</div>
+                <a href="{{url_for('download', manga_id='b5b47967-913f-4a87-a37b-cfcc809a489c')}}">
+                <a href="{{url_for('download', manga_id='b5b47967-913f-4a87-a37b-cfcc809a489c')}}">
+                    <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f5.png')}}" alt="image 2">
+                    <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Salad Days</div>
+                </a>
             </div>
             <div class="relative flex-shrink-0 w-48 h-72"> 
-                <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f6.jpg')}}" alt="image 2">
-                <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Age Matters</div>
+                <a href="{{url_for('download', manga_id='dfbcfc95-af86-4e8c-a4a8-3a39f24fa521')}}">
+                    <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f6.jpg')}}" alt="image 2">
+                    <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Age Matters</div>
+                </a>
             </div>
             <div class="relative flex-shrink-0 w-48 h-72"> 
-                <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f7.jpg')}}" alt="image 2">
-                <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Beginning after end</div>
-            </div><div class="relative flex-shrink-0 w-48 h-72"> 
-                <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/t1.jpg')}}" alt="image 2">
-                <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;"></div>
+                <a href="{{url_for('download', manga_id='f30a1d56-f3a4-4848-8cf2-b4369e784dcb')}}">
+                    <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/f7.jpg')}}" alt="image 2">
+                    <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;">Beginning after end</div>
+                </a>
+            </div>
+            <div class="relative flex-shrink-0 w-48 h-72"> 
+                <a href="{{url_for('download', manga_id='32d76d19-8a05-4db0-9fc2-e0b0648fe9d0')}}">
+                    <img class="rounded-lg w-full h-full object-cover" src="{{url_for('static', filename='assets/t1.jpg')}}" alt="image 2">
+                    <div class="absolute bottom-4 left-4 px-3 py-1 rounded text-2xl font-extrabold text-gray-900 dark:text-white" style="text-shadow: 2px 2px 8px black, -2px -2px black;"></div>
+                </a>
             </div>
             
             
@@ -138,7 +154,7 @@
             </button>
         </div>
     </div>
-
+    
     <!-- JavaScript for scrolling -->
     <script>
         function scrollLeft() {
@@ -153,7 +169,7 @@
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
-    </style>
+        </style>
 <br><br>
 <!-- Ranks area -->
 
@@ -162,9 +178,10 @@
 
 
 
-      <div class="flex justify-center gap-20">
-        <!-- Left Side List -->
-        <ol class="relative  px-20">                  
+<div class="flex justify-center gap-20">
+    <!-- Left Side List -->
+    <ol class="relative  px-20">                  
+        <a href="{{url_for('download', manga_id='32d76d19-8a05-4db0-9fc2-e0b0648fe9d0')}}">
             <li class="mb-10 ms-6 flex items-start">
                 <span class="me-2">
                   <p class="text-4xl font-bold text-gray-900 dark:text-black decoration-blue-500 underline ">01</p>
@@ -175,59 +192,64 @@
                 <div>
                   <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">
                     Solo leveling
-                  </h3>
-                  <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-600">
+                </h3>
+                <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-600">
                     <li>Current episode: 200</li>
                     <li>Status: Ongoing</li>
                     <li>Genre: Action, Adventure, Fantasy</li>
-                  </ul>
-                </div>
-            </li>
-            <li class="mb-10 ms-6 flex items-start">
-                <span class="me-2">
-                  <p class="text-4xl font-bold text-gray-900 dark:text-black decoration-blue-500 underline ">03</p>
+                </ul>
+            </div>
+        </li>
+    </a>
+    <a href="{{url_for('download', manga_id='9a414441-bbad-43f1-a3a7-dc262ca790a3')}}">
+        <li class="mb-10 ms-6 flex items-start">
+            <span class="me-2">
+                <p class="text-4xl font-bold text-gray-900 dark:text-black decoration-blue-500 underline ">03</p>
                 </span>
                 <span class="px-6">
-                  <img src="{{url_for('static', filename='assets/t2.jpg')}}" class="w-30 h-55 rounded-lg" alt="Flowbite Logo" />
+                    <img src="{{url_for('static', filename='assets/t2.jpg')}}" class="w-30 h-55 rounded-lg" alt="Flowbite Logo" />
                 </span>
                 <div>
                   <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">
                     Omniscicent readers viewpoint
-                  </h3>
-                  <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-600">
+                </h3>
+                <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-600">
                     <li>Current episode: 255  </li>
                     <li>Status: Ongoing</li>
                     <li>Genre: Action, Adventure, Fantasy</li>
-                  </ul>
-                </div>
-            </li>
-           
-        </ol>
-      
-        <!-- Right Side List (Duplicate) -->
-        <ol class="relative  px-20">                  
+                </ul>
+            </div>
+        </li>
+        </a>
+        
+    </ol>
+    
+    <!-- Right Side List (Duplicate) -->
+    <ol class="relative  px-20">                  
+        <a href="{{url_for('download', manga_id='96221045-e1f0-4449-9a76-a9df885e8bf0')}}">
             <li class="mb-10 ms-6 flex items-start">
                 <span class="me-2">
-                  <p class="text-4xl font-bold text-gray-900 dark:text-black decoration-blue-500 underline ">02</p>
+                    <p class="text-4xl font-bold text-gray-900 dark:text-black decoration-blue-500 underline ">02</p>
                 </span>
                 <span class="px-6">
-                  <img src="{{url_for('static', filename='assets/t3.jpg')}}" class="w-30 h-55 rounded-lg" alt="Flowbite Logo" />
+                    <img src="{{url_for('static', filename='assets/t3.jpg')}}" class="w-30 h-55 rounded-lg" alt="Flowbite Logo" />
                 </span>
                 <div>
                   <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">
                     Black Haze
-                  </h3>
-                  <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-600">
+                </h3>
+                <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-600">
                     <li>Current episode: 43</li>
                     <li>Status: Ongoing</li>
                     <li>Genre: Shounen, Adventure</li>
-                  </ul>
-                </div>
-
-
-            </li>
+                </ul>
+            </div>
             
-            <li class="mb-10 ms-6 flex items-start">
+            
+        </li>
+    </a>
+    <a href="{{url_for('download', manga_id='4d97b35d-2d9f-4369-964f-3b0ce2c7fbbc')}}">
+    <li class="mb-10 ms-6 flex items-start">
                 <span class="me-2">
                   <p class="text-4xl font-bold text-gray-900 dark:text-black decoration-blue-500 underline ">04</p>
                 </span>
@@ -244,6 +266,8 @@
                         <li>Genre: Action, Adventure, Fantasy</li>
                     </ul>
                 </div>
+                </li>
+                </a>
         </ol>
       </div>
       
@@ -256,7 +280,7 @@
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" class="flex items-center">
+            <a href="{{url_for('index')}}" class="flex items-center">
                   <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
                   <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MIdex</span>
               </a>
