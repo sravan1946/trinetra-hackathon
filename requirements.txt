@@ -1,6 +1,6 @@
 flask
+mangadex
 mangadex-downloader
-mangadex-downloader[optional]
 icecream
 flask_socketio
 eventlet
