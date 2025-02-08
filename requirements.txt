@@ -1,3 +1,6 @@
 flask
 mangadex-downloader
-mangadex
+mangadex-downloader[optional]
+icecream
+flask_socketio
+eventlet
