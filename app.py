@@ -5,9 +5,25 @@ import asyncio
 from mangadex import Manga, Auth
 import shutil
 import os
+import requests
 
-
+COVER_FOLDER = "static/covers"  # Store images in 'static/covers'
 IMAGE_FOLDER = "mangadex-dl_downloads"  # Path where images are stored
+os.makedirs(IMAGE_FOLDER, exist_ok=True)
+
+def download_image(image_url, manga_id):
+    """Download an image and save it locally."""
+    if os.path.exists(os.path.join(COVER_FOLDER, f"{manga_id}.jpg")):
+        return f"/cover/{manga_id}"
+    response = requests.get(image_url, stream=True)
+    if response.status_code == 200:
+        file_path = os.path.join(COVER_FOLDER, f"{manga_id}.jpg")
+        with open(file_path, "wb") as file:
+            for chunk in response.iter_content(1024):
+                file.write(chunk)
+        return f"/cover/{manga_id}"
+    return None
+
 
 async def download_manga(manga_id: str, format: str = "raw"):
     manga = Manga(auth=Auth())
@@ -17,9 +33,8 @@ async def download_manga(manga_id: str, format: str = "raw"):
     )
     await process.communicate()
     socketio.emit("download_complete", {"manga_id": manga_id})
-    # convert the downloaded files to a zip file
     print(folder_name)
-    shutil.make_archive(folder_name["en"], "zip", "mangadex-dl_downloads")
+    shutil.make_archive("mangadex-dl_downloads/" + folder_name["en"], "zip", "mangadex-dl_downloads/" + folder_name["en"])
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -28,17 +43,24 @@ socketio = SocketIO(app)
 def index():
     return render_template('index.html')
 
-@app.route("/download")
-def download():
-    return render_template("download.html")
+@app.route("/download/<string:manga_id>")
+def download(manga_id):
+    from utils import get_manga_from_id
+    manga = get_manga_from_id(manga_id)
+    return render_template("download.html", manga_id=manga_id, manga=manga)
 
-@app.route("/image/<manga_id>")
-def get_image(manga_id):
-    image_path = os.path.join(IMAGE_FOLDER, manga_id, "cover.jpg")  # Adjust filename as needed
-    if os.path.exists(image_path):
-        return send_from_directory(os.path.join(IMAGE_FOLDER, manga_id), "cover.jpg")
-    return "Image not found", 404
+@app.route("/test/<string:manga_id>")
+def test(manga_id):
+    from utils import get_manga_from_id, get_cover_url_from_id
+    manga = get_manga_from_id(manga_id)
+    download_image(get_cover_url_from_id(manga_id), manga_id)
+    return render_template("test.html", manga_id=manga_id, manga=manga)
 
+
+@app.route("/cover/<manga_id>")
+def serve_image(manga_id):
+    """Serve the downloaded image."""
+    return send_from_directory(COVER_FOLDER, f"{manga_id}.jpg")
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, use_reloader=True)

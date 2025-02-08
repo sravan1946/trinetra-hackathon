@@ -379,6 +379,20 @@ class Cover:
         resp = URLRequest.request_url(url, "GET", timeout=self.api.timeout)
         return self.cover_from_dict(resp)
 
+    def get_cover_url(self, cover_id: str) -> "str":
+        """Get a cover image
+
+        Args:
+            cover_id: The cover id
+
+        Returns:
+            Cover: Cover information
+        """
+        url = f"{self.api.url}/cover/{cover_id}"
+        resp = URLRequest.request_url(url, "GET", timeout=self.api.timeout)
+        cover: Cover = self.cover_from_dict(resp)
+        return cover.fetch_cover_image()
+
     def upload_cover(
         self, manga_id: str, filename: str, ObjReturn: bool = False
     ) -> Union["Cover", None]:
