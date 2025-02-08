@@ -1,6 +1,5 @@
 from mangadex import Auth, Manga, Cover
 from pprint import pprint
-from icecream import ic
 from typing import Optional, Literal
 import asyncio
 from app import download_manga

@@ -1,5 +1,6 @@
+import re
 from flask import Flask
-from flask import render_template, send_from_directory
+from flask import render_template, send_from_directory, request, redirect, url_for
 from flask_socketio import SocketIO
 import asyncio
 from mangadex import Manga, Auth
@@ -42,6 +43,26 @@ socketio = SocketIO(app)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.post("/validate-manga/<string:manga_id>")
+def validate_manga(manga_id):
+    manga = Manga(auth=Auth())
+    try:
+        manga.get_manga_list(ids=[manga_id])
+    except:
+        return "Invalid manga ID"
+
+    return "Valid"  # JS will use this to redirect
+
+@app.post("/download/<string:manga_id>")
+def download_manga_post(manga_id):
+    # validate manga_id
+    manga = Manga(auth=Auth())
+    try:
+        manga.get_manga_list(ids=[manga_id])
+    except Exception:
+        return "Invalid manga ID"
+    return render_template("download.html", manga_id=manga_id, manga=manga)
 
 @app.route("/download/<string:manga_id>")
 def download(manga_id):
