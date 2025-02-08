@@ -85,5 +85,5 @@ def serve_image(manga_id):
     return send_from_directory(COVER_FOLDER, f"{manga_id}.jpg")
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True, use_reloader=True)
+    socketio.run(app, debug=True, use_reloader=True, port=8000)
 
