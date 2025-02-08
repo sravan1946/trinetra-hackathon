@@ -13,17 +13,17 @@ manga = Manga(auth=auth)
 search = manga.get_manga_list(title="solo leveling")
 titles = [(manga.title, manga.manga_id) for manga in search]
 chapter = Chapter(auth=auth)
-pprint(titles)
+# pprint(titles)
 # pprint(search[1])
 chapter_list = chapter.get_chapter_list(manga=titles[1][1],limit=100,translatedLanguage=["en"],
                                         volume=[1], chapter=[1])
-pprint(chapter_list)
+# pprint(chapter_list)
 print([chap.chapter for chap in chapter_list])
 print(search[1].lastChapter)
 print(search[1].lastVolume)
 
 # setup subprocess and run the command mangadex-dl to download the file
-subprocess.run(["mangadex-dl", search[0].manga_id, "--path", "mangadex-dl_downloads", "-pbl", "stacked"])
+# subprocess.run(["mangadex-dl", search[0].manga_id, "--path", "mangadex-dl_downloads", "-pbl", "stacked"])
 
 
 def get_manga_id_from_title(title: str) -> Optional[str]:

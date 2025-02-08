@@ -18,7 +18,7 @@ async def download_manga(manga_id: str, format: str = "raw"):
     socketio.emit("download_complete", {"manga_id": manga_id})
     # convert the downloaded files to a zip file
     print(folder_name)
-    shutil.make_archive(folder_name["en"], "zip", "mangadex-dl_downloads")
+    shutil.make_archive(folder_name["en"], "zip", base_dir="mangadex-dl_downloads")
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -27,5 +27,10 @@ socketio = SocketIO(app)
 def index():
     return render_template('index.html')
 
+@app.route("/download")
+def download():
+    return render_template("download.html")
+
 if __name__ == "__main__":
     socketio.run(app, debug=True, use_reloader=True)
+
