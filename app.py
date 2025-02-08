@@ -45,8 +45,9 @@ def index():
 
 @app.route("/download/<string:manga_id>")
 def download(manga_id):
-    from utils import get_manga_from_id
+    from utils import get_manga_from_id, get_cover_url_from_id
     manga = get_manga_from_id(manga_id)
+    download_image(get_cover_url_from_id(manga_id), manga_id)
     return render_template("download.html", manga_id=manga_id, manga=manga)
 
 @app.route("/test/<string:manga_id>")
