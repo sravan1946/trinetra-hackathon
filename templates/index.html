@@ -29,10 +29,11 @@
       
       <br>
 <!-- link pasting -->
-<form class="max-w-2xl mx-auto" onsubmit="return validateLink()" > 
-      <!-- toptext midex  -->
+<form class="max-w-2xl mx-auto" method="POST" id="mangaForm" onsubmit="return validateAndSubmit(event)">
     <center>
-    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black">MI<span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">dex</span></h1>
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black">
+            MI<span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">dex</span>
+        </h1>
     </center>
 
     <label for="mangaLink" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -43,23 +44,40 @@
             </svg>
         </div>
         <input type="search" id="mangaLink" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Paste your link" required />
-        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Download</button>
+        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Download
+        </button>
     </div>
     <p id="error" style="color: red;">{{ error }}</p>
 </form>
-
 <script>
-    function validateLink() {
-        var input = document.getElementById("mangaLink").value;
-        var pattern = /^https:\/\/mangadex\.org\/title\/[a-f0-9\-]+\/?$/;
+    async function validateAndSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
 
-        if (!pattern.test(input)) {
+        var input = document.getElementById("mangaLink").value;
+        var pattern = /^https:\/\/mangadex\.org\/title\/([a-f0-9\-]+)(?:\/.*)?$/;
+        var match = input.match(pattern);
+
+        if (!match) {
             document.getElementById("error").innerText = "Invalid link!";
             return false;
         }
 
-        document.getElementById("error").innerText = "";
-        return true;
+        var mangaId = match[1]; // Extract only the ID
+
+        // Send POST request to validation endpoint
+        let response = await fetch(`/validate-manga/${mangaId}`, {
+            method: "POST",
+        });
+
+        let result = await response.text(); // Get response as text
+
+        if (result === "Invalid manga ID") {
+            document.getElementById("error").innerText = "Invalid manga ID!";
+        } else {
+            document.getElementById("error").innerText = ""; // Clear error
+            window.location.href = `/download/${mangaId}`; // Redirect on success
+        }
     }
 </script>
 
