@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, send_from_directory
 from flask_socketio import SocketIO
 import asyncio
 from mangadex import Manga, Auth
@@ -7,6 +7,7 @@ import shutil
 import os
 
 
+IMAGE_FOLDER = "mangadex-dl_downloads"  # Path where images are stored
 
 async def download_manga(manga_id: str, format: str = "raw"):
     manga = Manga(auth=Auth())
@@ -18,7 +19,7 @@ async def download_manga(manga_id: str, format: str = "raw"):
     socketio.emit("download_complete", {"manga_id": manga_id})
     # convert the downloaded files to a zip file
     print(folder_name)
-    shutil.make_archive(folder_name["en"], "zip", base_dir="mangadex-dl_downloads")
+    shutil.make_archive(folder_name["en"], "zip", "mangadex-dl_downloads")
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -30,6 +31,14 @@ def index():
 @app.route("/download")
 def download():
     return render_template("download.html")
+
+@app.route("/image/<manga_id>")
+def get_image(manga_id):
+    image_path = os.path.join(IMAGE_FOLDER, manga_id, "cover.jpg")  # Adjust filename as needed
+    if os.path.exists(image_path):
+        return send_from_directory(os.path.join(IMAGE_FOLDER, manga_id), "cover.jpg")
+    return "Image not found", 404
+
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, use_reloader=True)
